@@ -1,0 +1,58 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Gotham Rounded, sans-serif; /* default set sans-serif font if there is no Gotham Rounded on the OS*/
+    font-weight: normal;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, #3e7d9c88, #84d817);
+  }
+  
+  .calculator-grid {
+    display: grid; /* The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats */
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px); /* Create columns for our calculator */
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px); /* Create rows but we have minmax for numbers so we can have small numbers 120px and largest numbers when not writing a big number */
+  }
+  
+  .calculator-grid > button {
+    cursor: pointer; /* hovering over gives us pointer mouse */
+    font-size: 2rem;
+    border: 1px solid white;
+    outline: none;
+    background-color: rgba(127, 233, 224, 0.75);
+  }
+  
+  .calculator-grid > button:hover {
+    background-color: rgba(255, 255, 255, .9); /* when we hover over each button it has a white coolor */
+  }
+  
+  .span-two {
+    grid-column: span 2; /* AC and = takes 2 columns in the calculator */
+  }
+  
+  .output {
+    grid-column: 1 / -1;
+    background-color: rgba(12, 9, 9, 0.75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around; /* Puts as much space between every number when we type it in our calculator */
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all; /* wrap and brake is for big numbers to fit them in the next row of our output in this calculator */
+  }
+  
+  .output .previous-operand {
+    color: rgba(224, 206, 206, 0.863);
+    font-size: 1.5rem;
+  }
+  
+  .output .current-operand {
+    color: white;
+    font-size: 2.5rem;
+  }

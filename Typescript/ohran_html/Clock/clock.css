@@ -1,0 +1,87 @@
+body {
+    background: linear-gradient(to right, rgba(51, 204, 51), hsl(175, 100%, 50%));
+    display: flex;  /* Expands items to fill available free space or shrinks them to prevent overflow */
+    justify-content: center;
+    align-items: center; /* Puts items to center of the site but on the horizontal scale */
+    min-height: 100vh; /* so we can center on vertical scale or height ... */
+    overflow: hidden; /* So we can hide the scroll from the site, without it we can scroll or clock with min height up and down ...*/
+  }
+
+  .clock {
+    width: 550px;
+    height: 550px;
+    background-color: rgb(61, 141, 233);
+    border-radius: 50%;
+    border: 2px solid black;
+    position: relative;
+  }
+
+  .clock .number {
+    --rotation: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: rotate(var(--rotation));  /* rotation for the numbers */
+    font-size: 2.5rem;
+  }
+
+  .clock .number1 { --rotation: 30deg; }
+  .clock .number2 { --rotation: 60deg; }
+  .clock .number3 { --rotation: 90deg; }
+  .clock .number4 { --rotation: 120deg; }
+  .clock .number5 { --rotation: 150deg; }
+  .clock .number6 { --rotation: 180deg; }
+  .clock .number7 { --rotation: 210deg; }
+  .clock .number8 { --rotation: 240deg; }
+  .clock .number9 { --rotation: 270deg; }
+  .clock .number10 { --rotation: 300deg; }
+  .clock .number11 { --rotation: 330deg; }
+
+  .clock .hand {
+    --rotation: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    border: 1px solid white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transform-origin: bottom; /* Puts the rotation from mid section to the bottom of the hand */
+    z-index: 10; /* Puts the hand over the number of the clock */
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));  /* aligns the hand to the center of the number 12 by pulling it on the X coordinate system for -50% of its width*/
+  }
+
+  .clock::after {
+    content: ''; /* Add a new element so we can style  PS: this element is the circle in the middle of the clock */
+    position: absolute;
+    background-color: black;
+    z-index: 11;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+  .clock .hand.second {
+    width: 3px;
+    height: 45%;
+    background-color: rgb(255, 0, 43);
+  }
+
+  .clock .hand.minute {
+    width: 7px;
+    height: 40%;
+    background-color: black;
+  }
+
+  .clock .hand.hour {
+    width: 10px;
+    height: 35%;
+    background-color: black;
+  }
+
+  .hidden {
+    display: none;
+  }
