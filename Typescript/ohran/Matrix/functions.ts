@@ -285,30 +285,47 @@ export function numberAndMatrixMultiplication(){
 export function twoMatrixMultiplication(){
 
   let A: number[][] = [
-    [2,  5],
-    [1,  7],
-    [1,  3]
+    [4,  8, 10],
+    [2, 1, 2]
   ];
 
   let B: number[][] = [
-    [2,  5,  7],
-    [1,  7,  3],
-    [7,  9,  15],
-    [12,  71,  32],
-    [18,  43,  25],
-    [1,  3,  5]
+    [1,  4,  9, 1],
+    [10, 2, 10, 1],
+    [5, 4, 7, 1],
   ];
 
-  let C: number[][] = null;
-    for(let j = 0; j < B.length; j++) {
-        C[j] = [];
-        for(let k = 0; k < A[0].length; k++) {
-            var sum = 0;
-            for(var i = 0; i < A.length; i++) {
-                sum += A[i][k] * B[j][i];
-            }
-            C[j].push(sum);
-        }
+  let C: number[][] = [];
+
+  const rowsA: number = A.length;
+  const colsB: number = B[0].length;
+  const colsA: number = A[0].length;
+
+  for (let r = 0; r < rowsA; r++) {
+    const row: number[] = [];
+
+    for (let c = 0; c < colsB; c++) {
+      row.push(null);
     }
-    return C;
+
+    C.push(row);
+  }
+
+  for (let r = 0; r < rowsA; r++) {
+    for (let c = 0; c < colsB; c++) {
+
+      vectorMultiply(A, B, C, r, colsA, c);
+    }
+  }
+
+  return C;
+}
+
+function vectorMultiply(A: number[][], B: number[][], C: number[][], rA: number, colsAmountOfA: number, cB: number) {
+  let sum: number = 0;
+  for (let i = 0; i < colsAmountOfA; i++) {
+    sum += A[rA][i] * B[i][cB];
+  }
+
+  C[rA][cB] = sum;
 }
