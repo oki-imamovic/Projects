@@ -53,9 +53,9 @@ constant speed. Calculate its speed (in kilometers per hour) when distance
 (in kilometers) and time (in hours) in which vehicle traveled that distance
 are given. */
 
-export function vehicleSpeed(distance : number , time : number) : any{
+export function vehicleSpeed(distance : number , time : number) : number{
     let speed : any = distance / time ; 
-    return speed + " km/h";
+    return speed;
 }
 
 /* 2) There is a car race. Racetrack is straight line (for every racer) and
@@ -64,55 +64,53 @@ For every racer that participates in race, time in minutes is given. That
 time represents how long did it take for particular racer to finish the race.
 Calculate the speed of the fastest racer. */
 
-export function fastestRacerSpeed(timeA : number , timeB : number , timeC : number) : number {
-    let distance : number = 200;
-    timeA = minutesInHours(timeA);
-    timeB = minutesInHours(timeB);
-    timeC = minutesInHours(timeC);
-    let speedA : number = vehicleSpeed(distance , timeA);
-    let speedB : number = vehicleSpeed(distance , timeB);
-    let speedC : number = vehicleSpeed(distance , timeC);
-
-    return fastif (speedA , speedB , speedC);
+export function fastestRacerSpeed(time : number []) : number {
+    const distance : number = 200;
+    let speed : number[] = [];
+    let winner : number = 0;
     
+    for(let i = 0; i < time.length; i++){
+        speed.push(vehicleSpeed(distance, minutesToHours(time[i])));
+    }
+
+    for(let i = 0; i < speed.length; i++){
+        if (winner < speed[i] ) {
+            winner = speed[i];
+        }
+    }
+
+    return winner;
 }
 
 
-function minutesInHours (time : number) : number {
-    let timeInMinutes : number = time / 60;
-    return timeInMinutes;
+function minutesToHours (time : number) : number {
+    let timeInHours : number = time / 60;
+    return timeInHours;
 }
 
-
-function fastif(speedA : number , speedB : number , speedC : number) : number {
-    if(speedA > speedB && speedA > speedC){
-        return speedA;
-    }else if (speedB > speedA && speedB > speedC){
-        return speedB;
-    }else return speedC;
-}
 
 /* 3) Calculate the speed of the slowest racer in previous exercise. */
 
-export function slowestRacerSpeed(timeA : number , timeB : number , timeC : number) : number {
-    let distance : number = 200;
-    timeA = minutesInHours(timeA);
-    timeB = minutesInHours(timeB);
-    timeC = minutesInHours(timeC);
-    let speedA : number = vehicleSpeed(distance , timeA);
-    let speedB : number = vehicleSpeed(distance , timeB);
-    let speedC : number = vehicleSpeed(distance , timeC);
+export function slowestRacerSpeed(time : number []) : number {
+    const distance : number = 200;
+    let speed : number[] = [];
+    let loser : number = 0;
     
-    return slowif(speedA , speedB , speedC);
+    for(let i = 0; i < time.length; i++){
+        speed.push(vehicleSpeed(distance, minutesToHours(time[i])));
+        loser = loser + vehicleSpeed(distance, minutesToHours(time[i]));
+    }
+
+    for(let i = 0; i < speed.length; i++){
+        if (loser > speed[i] ) {
+            loser = speed[i];
+        }
+    }
+
+    return loser;
+    
 }
 
-function slowif(speedA : number , speedB : number , speedC : number) : number {
-    if(speedA < speedB && speedA < speedC){
-        return speedA;
-    }else if (speedB < speedA && speedB < speedC){
-        return speedB;
-    }else return speedC;
-}
 
 
 /* 4) Dollar Cost Averaging (DCA) is investment strategy that consists of
