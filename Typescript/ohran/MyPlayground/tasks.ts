@@ -244,3 +244,45 @@ export function sumNumbersToNnotdivWith7 (n : number) : number{
 
     return sum;
 }
+
+export function isItPalindrome (palindrom : string) : string{
+    const re = /[^A-Za-z0-9]/g;
+    palindrom = palindrom.toLowerCase().replace(re, '');
+
+    for(let i = 0; i < palindrom.length / 2; i++){
+        if(palindrom [i] !== palindrom[palindrom.length - 1 - i]){
+            return 'It is not a palindrom';
+        }else return 'It is a palindrome';
+    }
+}
+
+export function mostFrequentArrElement(arr : any[]) : any{
+    let mf = 1;
+    let m = 0;
+    let item;
+
+    for (let i = 0; i < arr.length; i++){
+        for (let j = i; j < arr.length; j++){
+            if (arr[i] == arr[j]){
+                m++;
+            }if (mf < m){
+                mf = m;
+                item = arr[i];
+            }
+        }
+        m = 0;
+    }
+    return item + ' Item is used ' + mf + ' times';
+}
+
+export function oneOfKind(arr : number []) : number [] {
+    let arr1: number[] = arr.slice().sort();
+    let newArr : number[] = [];
+    for (let i = 0; i < arr1.length; i++){
+        if(arr1[i] != arr1[i + 1]){
+            newArr.push(arr1[i]);
+        }else i++
+    }
+
+    return newArr;
+}
