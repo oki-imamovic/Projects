@@ -256,6 +256,18 @@ export function isItPalindrome (palindrom : string) : string{
     }
 }
 
+export function isTheNumberPalindrome() {
+    const num: number = 1298921;
+    let reverse: number = 0;
+  
+    for (let original = num; original > 0; original = Math.floor(original / 10)) {
+      const digit: number = original % 10;
+      reverse = reverse * 10 + digit;
+    }
+  
+    return reverse === num;
+  }
+
 export function mostFrequentArrElement(arr : any[]) : any{
     let mf = 1;
     let m = 0;
@@ -292,3 +304,20 @@ export function fibonacci(n : number) : number {
         return 1;
     }else return fibonacci(n -1) + fibonacci (n - 2);
 }
+
+export function studentGradesAverage() {
+    const grades: number[] = [10, 6, 10, 5, 10, 6];
+    let avg: number = 0;
+  
+    for (let i = 0; i < grades.length; i++) {
+      if (grades[i] === 5) {
+        return 5;
+      }
+  
+      avg += grades[i];
+    }
+  
+    avg = avg / grades.length;
+  
+    return avg;
+  }
